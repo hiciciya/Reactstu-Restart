@@ -6,8 +6,11 @@
     <title>Project One</title>
     <link rel="stylesheet" href="./semantic-dist/semantic.css" />
     <link rel="stylesheet" href="./style.css" />
+    <!-- //引入Babel -->
     <script src="vendor/babel-standalone.js"></script>
+    <!-- //引入React -->
     <script src="vendor/react.js"></script>
+    <!-- //引入React Dom -->
     <script src="vendor/react-dom.js"></script>
   </head>
 
@@ -17,7 +20,10 @@
       <div id="content"></div>
     </div>
     <script src="./js/seed.js"></script>
-    <script type="text/babel" src="./js/app.js"></script>
+    <!-- <script type="text/babel" data-plugins = "transform-class-properties" src="./js/app.js"></script> -->
+    <script type="text/babel" data-plugins = "transform-class-properties" src="./js/Product.js"></script>
+     <!-- type="text/babel" babel 转译es6
+    data-plugins = "transform-class-properties" babel 插件 -->
     <!-- Delete the script tag below to get started. -->
     <!-- <script
       type="text/babel"
