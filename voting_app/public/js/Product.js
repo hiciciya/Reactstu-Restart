@@ -7,17 +7,49 @@ class ProductList extends React.Component {
       // ProductList 收到点击的通知后 更新props的值
       // 更新后 数据从父组件流向子组件 
     // 定义一个函数作为子组件的props 来传递事件
-    handleProductUpVote(productId){
-      console.log(productId+'票数即将增加')
+
+    // constructor(props){
+    //   super(props)
+    //   this.handleProductUpVote = this.handleProductUpVote.bind(this)
+    //   this.state = {
+    //     products:[]
+    //   }
+    // }
+
+    state={
+      products:[]
+    }
+    componentDidMount(){
+      //把数据挂在到 ProductList state上
+      this.setState({
+        products:Seed.products
+      })
+    }
+    handleProductUpVote = (productId)=>{
+      //1. 找到state中的对应的数据 不要修改原来的state默认值 需要给state复一个新值
+      // let data = this.state.products;
+      let nextProduct = this.state.products.map((item,index)=>{
+        if(item.id === productId){
+          return Object.assign({},item,{
+            votes:item.votes+1
+          })
+        }else{
+          return item
+        }
+      })
+      this.setState({
+        products:nextProduct
+      })
     }
     
   render () {
     //数据按照降序排序 Array sort方法
     //数据排序
-    let products = Seed.products.sort((a,b)=>{
+    let products = this.state.products.sort((a,b)=>{
       b.votes-a.votes
     })
-    let componentsList = Seed.products.map((item,index)=>{
+
+    let componentsList = this.state.products.map((item,index)=>{
       return(
         <Product
         key = {'product'+index}
@@ -40,13 +72,14 @@ class ProductList extends React.Component {
   }
 }
 class Product extends React.Component {
-  constructor(props){
-    super(props);
-     this.handleUpVote = this.handleUpVote.bind(this);
-  }
+  //constructor可注释的原因 babel插件 transform-class-properties 
+  // constructor(props){
+  //   super(props);
+  //    this.handleUpVote = this.handleUpVote.bind(this);
+  // }
   //接受 父组件的投票事件
-  handleUpVote(){
-    console.log('dd')
+
+  handleUpVote=()=>{
     this.props.onVote(this.props.id)
   }
   render () {

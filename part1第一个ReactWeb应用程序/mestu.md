@@ -105,9 +105,43 @@ props与html元素交织在一起 创建动态数据驱动React组件
    1. key 属性为组件的每一个实例创建唯一绑定 key是React框架里的唯一标识
 5. React-事件传递
    1. 将函数作为props传递 由父组件向下传递 父组件为每一个子组件提供一个函数
+   2. this 绑定到自定义组件的方法
+      1. 特殊的this根据上下文具有不同的绑定
+         1. render  的this 绑定 当前组件 React自动会把this 绑定到当前组件
+         2. 能够把this自动绑定到当前组件的React方法 
+            1. componentDidMount
+            2. render 
+      2. 自定义组件的方法 需要手动讲this绑定子的组件
+         1. constructor()函数添加到Product组件顶部
+            ```
+               constructor(props){
+                  this.componentFunction  = this.this.componentFunction.bind(this)
+               }
+            ```
+      3. constructor解析
+         1. 通过类创建对象的时候 constructor() 就会被调用
+         2. React在初始化组件的时候 首先调用 constructor()
+         3. 在定义React类组件的方法的时候 必须在constructor()函数中执行绑定模式
+
+           
 
   
-
+6. 使用State
+   1. props:
+      1. props是不可变的 父组件是拥有者
+   2. state
+      1. state是组件私有的 this.setState 进行更改
+   3. 组件的state或者props更新组件会重新渲染
+      1. 数组是需要与状态的 并且是可以更改的 因为需要把普通数据转化成 state的形式
+      2. 我们要是认为state为不变的 就是不要带来副作用 
+      3. 避免改变对象
+         1. Object.assign
+      
+7. Babel插件 transform-class-properties(属性初始化器)
+   1. 需要在了解一下
+      1. 类中的静态方法并不能被 实例访问 有了这个插件实例就可以访问了
+   2. 能看明白的：
+      1. 在constructor外定义初始状态
 ## QAQ
 1. script 标签 type=text/babel 未加报错
    ```
