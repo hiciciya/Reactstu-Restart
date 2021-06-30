@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+      "outDir": "public/build",
+      "rootDir": "public/js/",
+      "module": "commonjs",
+      "target": "es5",
+      "lib": ["es6", "dom"],
+      "sourceMap": true,
+      "allowJs": true,
+      "jsx": "react",
+      "moduleResolution": "node",
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "skipLibCheck": true,
+	  	"allowSyntheticDefaultImports": true
+    },
+    "exclude": [
+      "node_modules",
+      "public/build",
+      "scripts",
+      "acceptance-tests",
+      "webpack",
+      "jest",
+      "public/vendor/",
+      "public/semantic-dist/",
+      "nightwatch.js",
+      "disable-browser-cache.js",
+      "tests/"
+    ],
+    "types": [
+      // "typePatches"
+    ]
+  }
